@@ -1,300 +1,511 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chetan Kamble | Beautiful Modern Portfolio</title>
-
-  <!-- TailwindCSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Typed.js CDN -->
-  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <style>
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(ellipse at 60% 10%, #1b1c20 0%, #020202 100%);
-      color: #cbd5e1;
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-    }
-    .glass-card {
-      background: rgba(255,255,255,0.10);
-      backdrop-filter: blur(20px) saturate(170%);
-      border: 1px solid rgba(0,255,255,0.18);
-      box-shadow: 0 0 18px #00ffff44;
-      transition: transform 0.32s, box-shadow 0.32s;
-    }
-    .glass-card:hover {
-      transform: translateY(-7px) scale(1.045);
-      box-shadow: 0 0 36px #00fff0cc, 0 0 66px #00fff099;
-    }
-    .accent-grad {
-      background: linear-gradient(135deg, #00fff9 0%, #00bcd4 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      font-family: 'JetBrains Mono', monospace;
-      text-shadow: 0 0 20px #00e4f8a0;
-    }
-    h1, h2, h3 {
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 0.08em;
-    }
-    h2.section-accent {
-      position:relative;
-      margin-bottom:3.2rem;
-    }
-    h2.section-accent:after {
-      content:'';
-      position:absolute;
-      width:68px; height:4px;
-      background: linear-gradient(120deg,#0ffafa,#00bcd4);
-      border-radius:2px;
-      left:50%; bottom:-18px; transform:translateX(-50%);
-      box-shadow: 0 0 22px #0ffafaaa;
-    }
-    .button {
-      background: linear-gradient(90deg, #00fff9, #00a6c0 90%);
-      color: #10272a !important;
-      font-weight:700;
-      box-shadow:0 4px 20px #00d0e9aa;
-      border-radius:0.5rem;
-      transition: all 0.33s;
-    }
-    .button:hover {
-      background:linear-gradient(90deg,#00fff4,#00c8d7 85%);
-      color:white !important;
-      transform:scale(1.055);
-      box-shadow:0 7px 28px #00fff0cc;
-    }
-    .section-bg {
-      background:linear-gradient(135deg, #191b23 0%,#24242f 80%);
-    }
-    .fade-in-up { opacity:0; transform:translateY(50px); animation:fadeUp 1.2s forwards;}
-    @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
-    .soft-shadow { box-shadow: 0 1.5px 10px #00e8ff44; }
-    /* Decorative section breaks */
-    .decor-wave {
-      width:100%; height:80px; display:block;
-      background:url('https://www.svgbackgrounds.com/wp-content/uploads/2021/05/wave-haikei-1.svg');
-      background-size:cover; background-repeat:no-repeat;
-      margin-bottom:-1.5rem;
-    }
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar{width:8px;background: #222;}
-    ::-webkit-scrollbar-thumb{background:#00e4f8; border-radius:24px;}
-    /* Social Icons Glow */
-    .icon-glow { color: #eee; transition: color 0.2s, text-shadow 0.2s;}
-    .icon-glow:hover { color: #00fff9; text-shadow: 0 0 12px #00fff9cc, 0 0 24px #00e4f8bb;}
-  </style>
-  <!-- Font Awesome for social icons -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chetan Prakash Kamble - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<!-- ============ Navbar ============= -->
-<nav class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-lg border-b border-cyan-900 soft-shadow">
-  <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-    <a href="#" class="text-2xl font-bold accent-grad tracking-wider">Chetan Kamble</a>
-    <ul class="hidden md:flex gap-8 text-slate-200 font-semibold tracking-wide text-base">
-      <li><a href="#home"      class="hover:text-cyan-300">Home</a></li>
-      <li><a href="#about"     class="hover:text-cyan-300">About</a></li>
-      <li><a href="#skills"    class="hover:text-cyan-300">Skills</a></li>
-      <li><a href="#projects"  class="hover:text-cyan-300">Projects</a></li>
-      <li><a href="#timeline"  class="hover:text-cyan-300">Timeline</a></li>
-      <li><a href="#contact"   class="hover:text-cyan-300">Contact</a></li>
-    </ul>
-    <a href="mailto:cpk9844@outlook.com" class="button px-5 py-2 ml-2 text-base shadow-xl">Hire Me</a>
-  </div>
-</nav>
-
-<!-- ============ Hero Section ============= -->
-<section id="home" class="min-h-screen flex flex-col items-center justify-center text-center pt-24">
-  <img src="MY.png" alt="Profile" class="w-36 h-36 mt-5 rounded-full border-4 border-cyan-400 mb-4 shadow-2xl object-cover glass-card">
-  <h1 class="text-4xl md:text-5xl font-extrabold mb-3 accent-grad drop-shadow-lg">Hi, I'm Chetan Kamble</h1>
-  <p class="text-lg md:text-xl text-slate-400">Aspiring Full-Stack Developer & AI Explorer</p>
-  <span class="text-2xl accent-grad font-semibold my-2">
-    <span id="typed-text"></span>
-  </span>
-  <div class="flex justify-center gap-4 mt-4 mb-2">
-    <a href="#projects" class="button px-7 py-3 text-lg shadow-xl">View Projects</a>
-    <a href="ChetanKamble_CV.pdf" class="border border-cyan-400 px-7 py-3 rounded-md font-semibold text-base hover:bg-cyan-500 hover:text-black transition-all">Download CV</a>
-  </div>
-</section>
-
-<div class="decor-wave"></div>
-
-<!-- ============ About Section ============= -->
-<section id="about" class="section-bg py-20 fade-in-up">
-  <div class="max-w-5xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center section-accent accent-grad">About Me</h2>
-    <div class="grid md:grid-cols-2 gap-10 items-center mt-6">
-      <p class="leading-relaxed text-slate-300 text-lg font-medium drop-shadow">
-        I am a final-year Computer Science Engineering student passionate about creating impactful applications and exploring innovative AI/ML solutions. I turn ideas into products with technology and teamwork, and I thrive in solving real-world problems through code, creativity, and continuous learning.
-      </p>
-      <ul class="space-y-2 text-slate-300">
-        <li><strong class="text-cyan-400">Location:</strong> Karnataka, India</li>
-        <li><strong class="text-cyan-400">Languages:</strong> English, Hindi, Kannada</li>
-        <li><strong class="text-cyan-400">Interests:</strong> AI/ML, Cloud, Open Source, UI/UX</li>
-        <li><strong class="text-cyan-400">Quick Fact:</strong> Built my first Android app at age 18!</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<div class="decor-wave"></div>
-
-<!-- ============ Skills Section ============= -->
-<section id="skills" class="py-20 fade-in-up">
-  <div class="max-w-6xl mx-auto px-6 text-center">
-    <h2 class="text-3xl font-bold mb-14 section-accent accent-grad">Skills & Technologies</h2>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="glass-card rounded-xl p-7">
-        <h3 class="font-bold text-xl mb-2 text-cyan-300">Front-End</h3>
-        <p class="mb-4 text-slate-400">React.js • Next.js • TailwindCSS • HTML5 • CSS3</p>
-        <div class="w-full bg-gray-800 rounded-full h-3">
-          <div class="bg-cyan-400 h-3 rounded-full transition-all" style="width: 87%"></div>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">Chetan Kamble</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#achievements" class="nav-link">Achievements</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
-      </div>
-      <div class="glass-card rounded-xl p-7">
-        <h3 class="font-bold text-xl mb-2 text-cyan-300">Back-End</h3>
-        <p class="mb-4 text-slate-400">Node.js • Express • MongoDB • REST APIs</p>
-        <div class="w-full bg-gray-800 rounded-full h-3">
-          <div class="bg-cyan-400 h-3 rounded-full" style="width: 76%"></div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-name">Chetan Prakash Kamble</h1>
+                    <div class="hero-title">
+                        <span>I'm a </span>
+                        <span class="typing-text" id="typing-text">Python Developer</span>
+                        <span class="cursor">|</span>
+                    </div>
+                    <p class="hero-description">Final-year B.E. Computer Science student with strong proficiency in Python and hands-on experience in building scalable, AI-driven applications.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn--primary">Get In Touch</a>
+                        <a href="#projects" class="btn btn--outline">View Projects</a>
+                    </div>
+                    <div class="hero-contact">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <span>cpk9844@outlook.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <span>9844538521</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <span>Hubli, 580028</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-card">
+                        <div class="profile-avatar">
+                            <div class="avatar-placeholder">CK</div>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://github.com/chetankambleofficial" target="_blank" class="social-link">
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/chetankambleofficial/" target="_blank" class="social-link">
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://chetankamble.online/" target="_blank" class="social-link">
+                                <span>Portfolio</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="glass-card rounded-xl p-7">
-        <h3 class="font-bold text-xl mb-2 text-cyan-300">Programming</h3>
-        <p class="mb-4 text-slate-400">Java • Python • C • Data Structures & Algorithms</p>
-        <div class="w-full bg-gray-800 rounded-full h-3">
-          <div class="bg-cyan-400 h-3 rounded-full" style="width: 92%"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Final-year B.E. Computer Science student with strong proficiency in Python and hands-on experience in building scalable, AI-driven applications. Skilled in backend and full-stack development using frameworks like Flask and Django, with practical knowledge of integrating machine learning and automation into real-world projects.</p>
+                    <p>Demonstrated ability to solve problems through clean, efficient code and a passion for leveraging Python technologies to build impactful software solutions.</p>
+                    <div class="languages">
+                        <h4>Languages</h4>
+                        <div class="language-tags">
+                            <span class="tag">English</span>
+                            <span class="tag">Kannada</span>
+                            <span class="tag">Hindi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="mt-16">
-      <h3 class="text-2xl font-semibold mb-6 accent-grad">Soft Skills</h3>
-      <div class="flex flex-wrap justify-center gap-4">
-        <span class="border border-cyan-500 px-4 py-2 rounded-full">Problem Solving</span>
-        <span class="border border-cyan-500 px-4 py-2 rounded-full">Collaboration</span>
-        <span class="border border-cyan-500 px-4 py-2 rounded-full">Agile Mindset</span>
-        <span class="border border-cyan-500 px-4 py-2 rounded-full">Public Speaking</span>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<div class="decor-wave"></div>
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">SQL</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">C</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="75"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Frameworks & Libraries</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Flask</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Django</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">React.js</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Node.js</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="70"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Databases</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-name">MySQL</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">MongoDB</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">SQLite</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Machine Learning</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-name">scikit-learn</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">pandas</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">NumPy</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">NLTK</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="70"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- ============ Projects Section ============= -->
-<section id="projects" class="py-24 fade-in-up section-bg">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-14 section-accent accent-grad">Featured Projects</h2>
-    <div class="grid md:grid-cols-3 gap-12">
-      <div class="glass-card rounded-2xl p-6">
-        <img src="https://static.vecteezy.com/system/resources/previews/016/177/664/original/micro-manager-boss-using-magnifying-glass-keeps-eye-on-employees-work-micromanagement-bosses-toxic-managers-monitoring-every-detail-oversight-and-control-over-employee-work-and-processes-vector.jpg" alt="" class="h-44 w-full object-cover rounded-lg mb-4 shadow">
-        <h3 class="text-lg font-bold accent-grad mb-1">Eye on Employee</h3>
-        <p class="text-slate-400 text-sm mb-3">Android app for GPS-based employee tracking and smart attendance.</p>
-        <a href="#" class="text-cyan-300 hover:underline text-sm">View on GitHub →</a>
-      </div>
-      <div class="glass-card rounded-2xl p-6">
-        <img src="https://img.freepik.com/free-vector/ecommerce-web-page-concept-illustration_114360-8204.jpg" alt="" class="h-44 w-full object-cover rounded-lg mb-4 shadow">
-        <h3 class="text-lg font-bold accent-grad mb-1">E-Commerce Platform</h3>
-        <p class="text-slate-400 text-sm mb-3">Responsive React/Next.js shopping site with secure payment APIs.</p>
-        <a href="#" class="text-cyan-300 hover:underline text-sm">Live Demo →</a>
-      </div>
-      <div class="glass-card rounded-2xl p-6">
-        <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20220208144344/Free-Resume-Builder-By-GeeksforGeeks-Create-Resume-Online.png" alt="" class="h-44 w-full object-cover rounded-lg mb-4 shadow">
-        <h3 class="text-lg font-bold accent-grad mb-1">Resume Builder</h3>
-        <p class="text-slate-400 text-sm mb-3">Web tool that creates professional PDF resumes with custom templates.</p>
-        <a href="#" class="text-cyan-300 hover:underline text-sm">Try it →</a>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Suraksha – AI Healthcare System</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Built a system for disease prediction, doctor appointment booking, and a personal health chatbot. Utilized Flask, scikit learn, and Google Cloud for AI integration and cloud deployment.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">scikit-learn</span>
+                            <span class="tech-tag">Google Cloud</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">AI/ML</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Smartphone E-commerce Website</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Developed a user-friendly e-commerce site with product browsing, cart, and order features. Used Node.js, MySQL, and Tailwind CSS for efficient backend and responsive UI.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Real-Time Collaborative Code Editor</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Enabled live multi-user code collaboration using web sockets. Built with React, Socket.io, and CodeLib to sync editor changes in real-time.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">CodeLib</span>
+                            <span class="tech-tag">WebSockets</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Eye on Employee – Android App</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Created an app to track employee location and monitor activity. Developed using Java and XML for accurate tracking and reporting.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">XML</span>
+                            <span class="tech-tag">Android</span>
+                            <span class="tech-tag">GPS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>GPT Clone – AI Chatbot</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Built an AI-powered chatbot using Gemini API for NLP tasks. Integrated with Express.js and styled using Tailwind CSS.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Gemini API</span>
+                            <span class="tech-tag">Express.js</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">NLP</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Online Examination System</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Designed a platform for online exams with AI-based code plagiarism detection. Used Python, React, and MongoDB to ensure secure and fair assessments.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">AI Detection</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="decor-wave"></div>
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Experience & Training</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Python Full Stack</h3>
+                        <h4>Pentagon Space Bangalore</h4>
+                        <span class="timeline-date">Mar 2025 – Ongoing</span>
+                        <span class="experience-type">Internship</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Full Stack Web Development (MERN)</h3>
+                        <h4>Apponix Academy Hubli</h4>
+                        <span class="timeline-date">Nov 2023 – Dec 2023</span>
+                        <span class="experience-type">Course</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>In-Plant Training in Python</h3>
+                        <h4>LCC Hubli</h4>
+                        <span class="timeline-date">May 2022 – July 2022</span>
+                        <span class="experience-type">Training</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- ============ Timeline Section ============= -->
-<section id="timeline" class="py-24 fade-in-up">
-  <div class="max-w-4xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-14 section-accent accent-grad">Education & Certifications</h2>
-    <div class="space-y-10 relative border-l-2 border-cyan-700 pl-7">
-      <div>
-        <span class="absolute -left-4 top-2 w-5 h-5 bg-cyan-400 rounded-full shadow"></span>
-        <h3 class="font-semibold accent-grad">B.E. Computer Science</h3>
-        <time class="text-sm text-cyan-200">2022 — 2026</time>
-        <p class="text-slate-400">AGMR College of Engineering & Technology</p>
-      </div>
-      <div>
-        <span class="absolute -left-4 top-2 w-5 h-5 bg-cyan-400 rounded-full shadow"></span>
-        <h3 class="font-semibold accent-grad">AWS Cloud Practitioner</h3>
-        <time class="text-sm text-cyan-200">Apr 2025</time>
-        <p class="text-slate-400">Validated foundational cloud concepts using AWS.</p>
-      </div>
-      <div>
-        <span class="absolute -left-4 top-2 w-5 h-5 bg-cyan-400 rounded-full shadow"></span>
-        <h3 class="font-semibold accent-grad">Coursera: Machine Learning</h3>
-        <time class="text-sm text-cyan-200">Dec 2024</time>
-        <p class="text-slate-400">Completed Andrew Ng’s ML course, building projects in Python.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Bachelor of Engineering (B.E.) in Computer Science</h3>
+                        <h4>AGMR College of Engineering & Technology, Varur</h4>
+                        <span class="timeline-date">2022 – 2025</span>
+                        <div class="grade">CGPA: 8.8/10</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Diploma in Computer Science</h3>
+                        <h4>K.L.E Societies Smt C I M Polytechnic Hubli</h4>
+                        <span class="timeline-date">2019 – 2022</span>
+                        <div class="grade">76.6%</div>
+                        <div class="note">DCET Rank – 5996 (2022)</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>SSLC</h3>
+                        <h4>New English School & Rotary Kannada Medium High School</h4>
+                        <span class="timeline-date">2009 – 2019</span>
+                        <div class="grade">79.2%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="decor-wave"></div>
+    <!-- Achievements Section -->
+    <section id="achievements" class="section">
+        <div class="container">
+            <h2 class="section-title">Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">🏆</div>
+                    <h3>Hackathon Participation</h3>
+                    <p>Participated in various hackathons including 24-hour Hackathon at SKV College Lakshmeshwar and 3-day Hackathon at Sristi National Level Project Exhibition Bangalore</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🎯</div>
+                    <h3>National Level Competitions</h3>
+                    <p>Participated in 24 hours National level hackathon in Shridevi college tumkur and K.L.E IT Hubli</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🎓</div>
+                    <h3>Microsoft Certification</h3>
+                    <p>Completed and certified the Career Essentials in Generative AI by Microsoft and LinkedIn</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">⭐</div>
+                    <h3>Academic Excellence</h3>
+                    <p>Awarded 'Best Boy' in NES Kannada primary school hubli</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- ============ Contact Section ============= -->
-<section id="contact" class="py-20 fade-in-up">
-  <div class="max-w-xl mx-auto px-6 text-center">
-    <h2 class="text-3xl font-bold section-accent accent-grad mb-8">Get in Touch</h2>
-    <p class="mb-9 text-slate-300 text-lg">Want to collaborate or discuss job opportunities? Drop me a message!</p>
-    <form action="https://formspree.io/f/yourID" method="POST" class="space-y-4">
-      <input type="text" name="name" placeholder="Your Name" required class="w-full bg-black/50 border border-slate-600 rounded-md p-3 focus:outline-none focus:border-cyan-500 shadow">
-      <input type="email" name="email" placeholder="Your Email" required class="w-full bg-black/50 border border-slate-600 rounded-md p-3 focus:outline-none focus:border-cyan-500 shadow">
-      <textarea name="message" rows="5" placeholder="Your Message" required class="w-full bg-black/50 border border-slate-600 rounded-md p-3 focus:outline-none focus:border-cyan-500 shadow"></textarea>
-      <button type="submit" class="button w-full py-3 text-lg">Send Message</button>
-    </form>
-    <div class="flex justify-center gap-7 mt-10 text-2xl">
-      <a href="#" class="icon-glow"><i class="fab fa-linkedin"></i></a>
-      <a href="#" class="icon-glow"><i class="fab fa-github"></i></a>
-      <a href="mailto:cpk9844@outlook.com" class="icon-glow"><i class="fas fa-envelope"></i></a>
-    </div>
-  </div>
-</section>
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.</p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <span class="contact-icon">📧</span>
+                            <div>
+                                <strong>Email</strong>
+                                <p>cpk9844@outlook.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="contact-icon">📱</span>
+                            <div>
+                                <strong>Phone</strong>
+                                <p>9844538521</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <strong>Location</strong>
+                                <p>Hubli, 580028</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links-section">
+                        <a href="https://github.com/chetankambleofficial" target="_blank" class="social-btn">GitHub</a>
+                        <a href="https://www.linkedin.com/in/chetankambleofficial/" target="_blank" class="social-btn">LinkedIn</a>
+                        <a href="https://chetankamble.online/" target="_blank" class="social-btn">Portfolio</a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name *</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject *</label>
+                            <input type="text" id="subject" name="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message *</label>
+                            <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- ============ Footer ============= -->
-<footer class="bg-black/80 py-7 text-center text-base text-slate-500 soft-shadow">
-  © 2025 Chetan Kamble &bull; Built with <span style="color:#00fff9;">&#10084;</span> using TailwindCSS
-</footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2025 Chetan Prakash Kamble. All rights reserved.</p>
+                    <p>Built with passion and modern web technologies.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-<script>
-  new Typed('#typed-text', {
-    strings: [
-      'Java Developer',
-      'Full-Stack Developer',
-      'AI Enthusiast',
-      'Open-Source Contributor'
-    ],
-    typeSpeed: 46,
-    backSpeed: 24,
-    loop: true
-  });
-
-  // Section fade-in on scroll
-  const faders=document.querySelectorAll('.fade-in-up');
-  const appearOptions={threshold:0.13};
-  const appearOnScroll=new IntersectionObserver((entries,observer)=>{
-    entries.forEach(entry=>{
-      if(!entry.isIntersecting) return;
-      entry.target.style.opacity=1;
-      entry.target.style.transform='translateY(0)';
-      observer.unobserve(entry.target);
-    });
-  },appearOptions);
-  faders.forEach(fader=>appearOnScroll.observe(fader));
-</script>
+    <script src="app.js"></script>
 </body>
 </html>
