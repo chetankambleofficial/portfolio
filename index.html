@@ -1,115 +1,300 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-  <link rel="stylesheet" href="media.css">
-  <style>
- 
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body style=" background-color: rgb(151, 212, 255);">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chetan Kamble | Beautiful Modern Portfolio</title>
 
-<nav  class="navbar navbar-expand-sm  mynav">
-  <div class="container-fluid">
-    <h1 class="navbar-brand mynavh1" href="javascript:void(0)">chetan kamble</h1>
-    <button id="but" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button> 
-    </div>
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Typed.js CDN -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(ellipse at 60% 10%, #1b1c20 0%, #020202 100%);
+      color: #cbd5e1;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .glass-card {
+      background: rgba(255,255,255,0.10);
+      backdrop-filter: blur(20px) saturate(170%);
+      border: 1px solid rgba(0,255,255,0.18);
+      box-shadow: 0 0 18px #00ffff44;
+      transition: transform 0.32s, box-shadow 0.32s;
+    }
+    .glass-card:hover {
+      transform: translateY(-7px) scale(1.045);
+      box-shadow: 0 0 36px #00fff0cc, 0 0 66px #00fff099;
+    }
+    .accent-grad {
+      background: linear-gradient(135deg, #00fff9 0%, #00bcd4 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      font-family: 'JetBrains Mono', monospace;
+      text-shadow: 0 0 20px #00e4f8a0;
+    }
+    h1, h2, h3 {
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.08em;
+    }
+    h2.section-accent {
+      position:relative;
+      margin-bottom:3.2rem;
+    }
+    h2.section-accent:after {
+      content:'';
+      position:absolute;
+      width:68px; height:4px;
+      background: linear-gradient(120deg,#0ffafa,#00bcd4);
+      border-radius:2px;
+      left:50%; bottom:-18px; transform:translateX(-50%);
+      box-shadow: 0 0 22px #0ffafaaa;
+    }
+    .button {
+      background: linear-gradient(90deg, #00fff9, #00a6c0 90%);
+      color: #10272a !important;
+      font-weight:700;
+      box-shadow:0 4px 20px #00d0e9aa;
+      border-radius:0.5rem;
+      transition: all 0.33s;
+    }
+    .button:hover {
+      background:linear-gradient(90deg,#00fff4,#00c8d7 85%);
+      color:white !important;
+      transform:scale(1.055);
+      box-shadow:0 7px 28px #00fff0cc;
+    }
+    .section-bg {
+      background:linear-gradient(135deg, #191b23 0%,#24242f 80%);
+    }
+    .fade-in-up { opacity:0; transform:translateY(50px); animation:fadeUp 1.2s forwards;}
+    @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+    .soft-shadow { box-shadow: 0 1.5px 10px #00e8ff44; }
+    /* Decorative section breaks */
+    .decor-wave {
+      width:100%; height:80px; display:block;
+      background:url('https://www.svgbackgrounds.com/wp-content/uploads/2021/05/wave-haikei-1.svg');
+      background-size:cover; background-repeat:no-repeat;
+      margin-bottom:-1.5rem;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar{width:8px;background: #222;}
+    ::-webkit-scrollbar-thumb{background:#00e4f8; border-radius:24px;}
+    /* Social Icons Glow */
+    .icon-glow { color: #eee; transition: color 0.2s, text-shadow 0.2s;}
+    .icon-glow:hover { color: #00fff9; text-shadow: 0 0 12px #00fff9cc, 0 0 24px #00e4f8bb;}
+  </style>
+  <!-- Font Awesome for social icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<!-- ============ Navbar ============= -->
+<nav class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-lg border-b border-cyan-900 soft-shadow">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+    <a href="#" class="text-2xl font-bold accent-grad tracking-wider">Chetan Kamble</a>
+    <ul class="hidden md:flex gap-8 text-slate-200 font-semibold tracking-wide text-base">
+      <li><a href="#home"      class="hover:text-cyan-300">Home</a></li>
+      <li><a href="#about"     class="hover:text-cyan-300">About</a></li>
+      <li><a href="#skills"    class="hover:text-cyan-300">Skills</a></li>
+      <li><a href="#projects"  class="hover:text-cyan-300">Projects</a></li>
+      <li><a href="#timeline"  class="hover:text-cyan-300">Timeline</a></li>
+      <li><a href="#contact"   class="hover:text-cyan-300">Contact</a></li>
+    </ul>
+    <a href="mailto:cpk9844@outlook.com" class="button px-5 py-2 ml-2 text-base shadow-xl">Hire Me</a>
   </div>
 </nav>
-<div class="container-fluid text-dark cont">
-    <div class="d1 md1">
-    <h1 class="nameh">Hi! <br>it's <span class="text-primary">Chetan</span> kamble</h1>
-    <p>Welcome to my portfolio website </p>
-    <div class="type1"><span id="element"></span></div>
-    
-    <script>
-      var typed = new Typed('#element', {
-        strings: ['Student', 'web developer','web designer'],
-        typeSpeed: 50,
-        loop: true,
-        loopCount: Infinity,
-      });
-    </script>
-    <br><br>
-    <p style=" line-height: 30px; padding: 0px; font-size: xx-small; font-weight: 500; color: #11116a; margin-top: 3%;"><span style="font-size: medium; letter-spacing: 3px; font-weight:700; color: rgb(16, 46, 115);">Computer science Engineering student </span><br>
-      
-      mobile no:- 9844538521<br>
-      email id :- cpk9844@outlook.com
+
+<!-- ============ Hero Section ============= -->
+<section id="home" class="min-h-screen flex flex-col items-center justify-center text-center pt-24">
+  <img src="MY.png" alt="Profile" class="w-36 h-36 mt-5 rounded-full border-4 border-cyan-400 mb-4 shadow-2xl object-cover glass-card">
+  <h1 class="text-4xl md:text-5xl font-extrabold mb-3 accent-grad drop-shadow-lg">Hi, I'm Chetan Kamble</h1>
+  <p class="text-lg md:text-xl text-slate-400">Aspiring Full-Stack Developer & AI Explorer</p>
+  <span class="text-2xl accent-grad font-semibold my-2">
+    <span id="typed-text"></span>
+  </span>
+  <div class="flex justify-center gap-4 mt-4 mb-2">
+    <a href="#projects" class="button px-7 py-3 text-lg shadow-xl">View Projects</a>
+    <a href="ChetanKamble_CV.pdf" class="border border-cyan-400 px-7 py-3 rounded-md font-semibold text-base hover:bg-cyan-500 hover:text-black transition-all">Download CV</a>
+  </div>
+</section>
+
+<div class="decor-wave"></div>
+
+<!-- ============ About Section ============= -->
+<section id="about" class="section-bg py-20 fade-in-up">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center section-accent accent-grad">About Me</h2>
+    <div class="grid md:grid-cols-2 gap-10 items-center mt-6">
+      <p class="leading-relaxed text-slate-300 text-lg font-medium drop-shadow">
+        I am a final-year Computer Science Engineering student passionate about creating impactful applications and exploring innovative AI/ML solutions. I turn ideas into products with technology and teamwork, and I thrive in solving real-world problems through code, creativity, and continuous learning.
       </p>
+      <ul class="space-y-2 text-slate-300">
+        <li><strong class="text-cyan-400">Location:</strong> Karnataka, India</li>
+        <li><strong class="text-cyan-400">Languages:</strong> English, Hindi, Kannada</li>
+        <li><strong class="text-cyan-400">Interests:</strong> AI/ML, Cloud, Open Source, UI/UX</li>
+        <li><strong class="text-cyan-400">Quick Fact:</strong> Built my first Android app at age 18!</li>
+      </ul>
+    </div>
   </div>
-  <div class="d2 md2" >
-   <img src="profile.png"  style="height: 100%; width: 100%;">
-  </div> 
-  </div>
+</section>
 
+<div class="decor-wave"></div>
 
-
-
-
-
-
-    
-
-  <div class="blockcode text-white">
-    
-  
-    <footer class="page-footer shadow text-white ">
-      <div class="d-flex flex-column mx-auto py-5" style="width: 80%">
-        <div class="d-flex flex-wrap justify-content-between">
-          <div>
-            <a href="/" class="d-flex align-items-center p-0 text-white">
-              
-              <span class="ms-3 h5 font-weight-bold">Chetan Kamble</span>
-            </a>
-            <p class="my-3" style="width: 250px; color:rgb(255, 255, 255)">
-           i am a compuer science engineering Student at Agm rural college of engineering and technology
-            </p>
-           
-          </div>
-
-
-          <div>
-            <p class="h5 mb-4" style="font-weight: 600; color:rgb(255, 255, 255)"><i>Chetan Kamble</p>
-            <ul class="p-0" style="list-style: none; cursor: pointer; color: beige;">
-              <li class="my-2">
-                <a class="text-white" href="/">Resources</a>
-              </li>
-              <li class="my-2">
-                <a class="text-white" href="/">About Us</a>
-              </li>
-              <li class="my-2">
-                <a class="text-white" href="/">Contact</a>
-              </li>
-              <li class="my-2">
-                <a class="text-white" href="/">Blog</a>
-              </li>
-            </ul>
-          </div>
-        
-          <div>
-            <p class="h5 mb-4" style="font-weight: 600; color: rgb(255, 255, 255);">Help</p>
-            <ul class="p-0" style="list-style: none; cursor: pointer">
-              <li class="my-2">
-                <a class="text-white" href="/">Support</a>
-              </li>
-              <li class="my-2">
-                <a class="text-white" href="/">Sign Up</a>
-              </li>
-              <li class="my-2">
-                <a class="text-white" href="/">Sign In</a>
-              </li>
-            </ul>
-          </div>
+<!-- ============ Skills Section ============= -->
+<section id="skills" class="py-20 fade-in-up">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold mb-14 section-accent accent-grad">Skills & Technologies</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass-card rounded-xl p-7">
+        <h3 class="font-bold text-xl mb-2 text-cyan-300">Front-End</h3>
+        <p class="mb-4 text-slate-400">React.js • Next.js • TailwindCSS • HTML5 • CSS3</p>
+        <div class="w-full bg-gray-800 rounded-full h-3">
+          <div class="bg-cyan-400 h-3 rounded-full transition-all" style="width: 87%"></div>
         </div>
-        <small class="text-center mt-5" style="color:rgb(255, 255, 255)">&copy; ChetanKamble, 2023. All rights reserved.</small>
       </div>
-    </footer>
+      <div class="glass-card rounded-xl p-7">
+        <h3 class="font-bold text-xl mb-2 text-cyan-300">Back-End</h3>
+        <p class="mb-4 text-slate-400">Node.js • Express • MongoDB • REST APIs</p>
+        <div class="w-full bg-gray-800 rounded-full h-3">
+          <div class="bg-cyan-400 h-3 rounded-full" style="width: 76%"></div>
+        </div>
+      </div>
+      <div class="glass-card rounded-xl p-7">
+        <h3 class="font-bold text-xl mb-2 text-cyan-300">Programming</h3>
+        <p class="mb-4 text-slate-400">Java • Python • C • Data Structures & Algorithms</p>
+        <div class="w-full bg-gray-800 rounded-full h-3">
+          <div class="bg-cyan-400 h-3 rounded-full" style="width: 92%"></div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-16">
+      <h3 class="text-2xl font-semibold mb-6 accent-grad">Soft Skills</h3>
+      <div class="flex flex-wrap justify-center gap-4">
+        <span class="border border-cyan-500 px-4 py-2 rounded-full">Problem Solving</span>
+        <span class="border border-cyan-500 px-4 py-2 rounded-full">Collaboration</span>
+        <span class="border border-cyan-500 px-4 py-2 rounded-full">Agile Mindset</span>
+        <span class="border border-cyan-500 px-4 py-2 rounded-full">Public Speaking</span>
+      </div>
+    </div>
   </div>
+</section>
+
+<div class="decor-wave"></div>
+
+<!-- ============ Projects Section ============= -->
+<section id="projects" class="py-24 fade-in-up section-bg">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-14 section-accent accent-grad">Featured Projects</h2>
+    <div class="grid md:grid-cols-3 gap-12">
+      <div class="glass-card rounded-2xl p-6">
+        <img src="https://static.vecteezy.com/system/resources/previews/016/177/664/original/micro-manager-boss-using-magnifying-glass-keeps-eye-on-employees-work-micromanagement-bosses-toxic-managers-monitoring-every-detail-oversight-and-control-over-employee-work-and-processes-vector.jpg" alt="" class="h-44 w-full object-cover rounded-lg mb-4 shadow">
+        <h3 class="text-lg font-bold accent-grad mb-1">Eye on Employee</h3>
+        <p class="text-slate-400 text-sm mb-3">Android app for GPS-based employee tracking and smart attendance.</p>
+        <a href="#" class="text-cyan-300 hover:underline text-sm">View on GitHub →</a>
+      </div>
+      <div class="glass-card rounded-2xl p-6">
+        <img src="https://img.freepik.com/free-vector/ecommerce-web-page-concept-illustration_114360-8204.jpg" alt="" class="h-44 w-full object-cover rounded-lg mb-4 shadow">
+        <h3 class="text-lg font-bold accent-grad mb-1">E-Commerce Platform</h3>
+        <p class="text-slate-400 text-sm mb-3">Responsive React/Next.js shopping site with secure payment APIs.</p>
+        <a href="#" class="text-cyan-300 hover:underline text-sm">Live Demo →</a>
+      </div>
+      <div class="glass-card rounded-2xl p-6">
+        <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20220208144344/Free-Resume-Builder-By-GeeksforGeeks-Create-Resume-Online.png" alt="" class="h-44 w-full object-cover rounded-lg mb-4 shadow">
+        <h3 class="text-lg font-bold accent-grad mb-1">Resume Builder</h3>
+        <p class="text-slate-400 text-sm mb-3">Web tool that creates professional PDF resumes with custom templates.</p>
+        <a href="#" class="text-cyan-300 hover:underline text-sm">Try it →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="decor-wave"></div>
+
+<!-- ============ Timeline Section ============= -->
+<section id="timeline" class="py-24 fade-in-up">
+  <div class="max-w-4xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-14 section-accent accent-grad">Education & Certifications</h2>
+    <div class="space-y-10 relative border-l-2 border-cyan-700 pl-7">
+      <div>
+        <span class="absolute -left-4 top-2 w-5 h-5 bg-cyan-400 rounded-full shadow"></span>
+        <h3 class="font-semibold accent-grad">B.E. Computer Science</h3>
+        <time class="text-sm text-cyan-200">2022 — 2026</time>
+        <p class="text-slate-400">AGMR College of Engineering & Technology</p>
+      </div>
+      <div>
+        <span class="absolute -left-4 top-2 w-5 h-5 bg-cyan-400 rounded-full shadow"></span>
+        <h3 class="font-semibold accent-grad">AWS Cloud Practitioner</h3>
+        <time class="text-sm text-cyan-200">Apr 2025</time>
+        <p class="text-slate-400">Validated foundational cloud concepts using AWS.</p>
+      </div>
+      <div>
+        <span class="absolute -left-4 top-2 w-5 h-5 bg-cyan-400 rounded-full shadow"></span>
+        <h3 class="font-semibold accent-grad">Coursera: Machine Learning</h3>
+        <time class="text-sm text-cyan-200">Dec 2024</time>
+        <p class="text-slate-400">Completed Andrew Ng’s ML course, building projects in Python.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="decor-wave"></div>
+
+<!-- ============ Contact Section ============= -->
+<section id="contact" class="py-20 fade-in-up">
+  <div class="max-w-xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold section-accent accent-grad mb-8">Get in Touch</h2>
+    <p class="mb-9 text-slate-300 text-lg">Want to collaborate or discuss job opportunities? Drop me a message!</p>
+    <form action="https://formspree.io/f/yourID" method="POST" class="space-y-4">
+      <input type="text" name="name" placeholder="Your Name" required class="w-full bg-black/50 border border-slate-600 rounded-md p-3 focus:outline-none focus:border-cyan-500 shadow">
+      <input type="email" name="email" placeholder="Your Email" required class="w-full bg-black/50 border border-slate-600 rounded-md p-3 focus:outline-none focus:border-cyan-500 shadow">
+      <textarea name="message" rows="5" placeholder="Your Message" required class="w-full bg-black/50 border border-slate-600 rounded-md p-3 focus:outline-none focus:border-cyan-500 shadow"></textarea>
+      <button type="submit" class="button w-full py-3 text-lg">Send Message</button>
+    </form>
+    <div class="flex justify-center gap-7 mt-10 text-2xl">
+      <a href="#" class="icon-glow"><i class="fab fa-linkedin"></i></a>
+      <a href="#" class="icon-glow"><i class="fab fa-github"></i></a>
+      <a href="mailto:cpk9844@outlook.com" class="icon-glow"><i class="fas fa-envelope"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Footer ============= -->
+<footer class="bg-black/80 py-7 text-center text-base text-slate-500 soft-shadow">
+  © 2025 Chetan Kamble &bull; Built with <span style="color:#00fff9;">&#10084;</span> using TailwindCSS
+</footer>
+
+<script>
+  new Typed('#typed-text', {
+    strings: [
+      'Java Developer',
+      'Full-Stack Developer',
+      'AI Enthusiast',
+      'Open-Source Contributor'
+    ],
+    typeSpeed: 46,
+    backSpeed: 24,
+    loop: true
+  });
+
+  // Section fade-in on scroll
+  const faders=document.querySelectorAll('.fade-in-up');
+  const appearOptions={threshold:0.13};
+  const appearOnScroll=new IntersectionObserver((entries,observer)=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting) return;
+      entry.target.style.opacity=1;
+      entry.target.style.transform='translateY(0)';
+      observer.unobserve(entry.target);
+    });
+  },appearOptions);
+  faders.forEach(fader=>appearOnScroll.observe(fader));
+</script>
 </body>
 </html>
