@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- README: Main HTML structure for Chetan Prakash Kamble's portfolio website -->
+    <!-- Features: Navigation, Hero, About, Skills, Projects, Timeline, Contact sections -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chetan Prakash Kamble - Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Fixed Navigation Bar -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
@@ -18,16 +20,14 @@
                 <a href="#about" class="nav-link">About</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
-                <a href="#experience" class="nav-link">Experience</a>
                 <a href="#education" class="nav-link">Education</a>
-                <a href="#achievements" class="nav-link">Achievements</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
             <div class="nav-controls">
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
                     <span class="theme-icon">🌙</span>
                 </button>
-                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="contact-item">
                             <span class="contact-icon">📱</span>
-                            <span>9844538521</span>
+                            <span>+91 98445 38521</span>
                         </div>
                         <div class="contact-item">
                             <span class="contact-icon">📍</span>
@@ -71,17 +71,18 @@
                 <div class="hero-image">
                     <div class="profile-card">
                         <div class="profile-avatar">
-                            <div class="avatar-placeholder">CK</div>
+                            <div class="avatar-placeholder" style="background-image: url(chetan.jpg); background-repeat: no-repeat; background-size: cover;"></div>
+
                         </div>
                         <div class="social-links">
-                            <a href="https://github.com/chetankambleofficial" target="_blank" class="social-link">
-                                <span>GitHub</span>
-                            </a>
-                            <a href="https://www.linkedin.com/in/chetankambleofficial/" target="_blank" class="social-link">
-                                <span>LinkedIn</span>
-                            </a>
                             <a href="https://chetankamble.online/" target="_blank" class="social-link">
                                 <span>Portfolio</span>
+                            </a>
+                            <a href="mailto:cpk9844@outlook.com" class="social-link">
+                                <span>Email</span>
+                            </a>
+                            <a href="tel:+919844538521" class="social-link">
+                                <span>Call</span>
                             </a>
                         </div>
                     </div>
@@ -132,96 +133,73 @@
                             </div>
                         </div>
                         <div class="skill-item">
-                            <span class="skill-name">SQL</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-percent="80"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
                             <span class="skill-name">C</span>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-percent="75"></div>
                             </div>
                         </div>
+                        <div class="skill-item">
+                            <span class="skill-name">SQL</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="80"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3>Frameworks & Libraries</h3>
+                    <h3>Frameworks & Tools</h3>
                     <div class="skills-list">
                         <div class="skill-item">
                             <span class="skill-name">Flask</span>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percent="85"></div>
+                                <div class="skill-progress" data-percent="88"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Django</span>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percent="80"></div>
+                                <div class="skill-progress" data-percent="82"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">React.js</span>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percent="75"></div>
+                                <div class="skill-progress" data-percent="85"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <span class="skill-name">Node.js</span>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percent="70"></div>
+                                <div class="skill-progress" data-percent="80"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3>Databases</h3>
+                    <h3>Databases & Design</h3>
                     <div class="skills-list">
-                        <div class="skill-item">
-                            <span class="skill-name">MySQL</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-percent="85"></div>
-                            </div>
-                        </div>
                         <div class="skill-item">
                             <span class="skill-name">MongoDB</span>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percent="75"></div>
+                                <div class="skill-progress" data-percent="78"></div>
                             </div>
                         </div>
                         <div class="skill-item">
-                            <span class="skill-name">SQLite</span>
+                            <span class="skill-name">MySQL</span>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percent="80"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Machine Learning</h3>
-                    <div class="skills-list">
-                        <div class="skill-item">
-                            <span class="skill-name">scikit-learn</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-percent="80"></div>
+                                <div class="skill-progress" data-percent="82"></div>
                             </div>
                         </div>
                         <div class="skill-item">
-                            <span class="skill-name">pandas</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-percent="85"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">NumPy</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-percent="80"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">NLTK</span>
+                            <span class="skill-name">Figma</span>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-percent="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Tailwind CSS</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="88"></div>
                             </div>
                         </div>
                     </div>
@@ -240,13 +218,12 @@
                         <h3>Suraksha – AI Healthcare System</h3>
                     </div>
                     <div class="project-body">
-                        <p>Built a system for disease prediction, doctor appointment booking, and a personal health chatbot. Utilized Flask, scikit learn, and Google Cloud for AI integration and cloud deployment.</p>
+                        <p>Built a comprehensive healthcare system with disease prediction, doctor appointment booking, and a personal health chatbot. Utilized Flask, scikit-learn, and Google Cloud for AI integration and cloud deployment.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">Flask</span>
                             <span class="tech-tag">scikit-learn</span>
                             <span class="tech-tag">Google Cloud</span>
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">AI/ML</span>
                         </div>
                     </div>
                 </div>
@@ -255,7 +232,7 @@
                         <h3>Smartphone E-commerce Website</h3>
                     </div>
                     <div class="project-body">
-                        <p>Developed a user-friendly e-commerce site with product browsing, cart, and order features. Used Node.js, MySQL, and Tailwind CSS for efficient backend and responsive UI.</p>
+                        <p>Developed a user-friendly e-commerce platform with product browsing, cart management, and order processing features. Built with Node.js backend and MySQL database.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">Node.js</span>
                             <span class="tech-tag">MySQL</span>
@@ -269,7 +246,7 @@
                         <h3>Real-Time Collaborative Code Editor</h3>
                     </div>
                     <div class="project-body">
-                        <p>Enabled live multi-user code collaboration using web sockets. Built with React, Socket.io, and CodeLib to sync editor changes in real-time.</p>
+                        <p>Enabled live multi-user code collaboration using WebSockets. Built with React frontend and Socket.io for real-time synchronization of editor changes.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">React</span>
                             <span class="tech-tag">Socket.io</span>
@@ -283,7 +260,7 @@
                         <h3>Eye on Employee – Android App</h3>
                     </div>
                     <div class="project-body">
-                        <p>Created an app to track employee location and monitor activity. Developed using Java and XML for accurate tracking and reporting.</p>
+                        <p>Created an Android application to track employee location and monitor activity with GPS integration. Developed using Java and XML with accurate tracking features.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">Java</span>
                             <span class="tech-tag">XML</span>
@@ -297,7 +274,7 @@
                         <h3>GPT Clone – AI Chatbot</h3>
                     </div>
                     <div class="project-body">
-                        <p>Built an AI-powered chatbot using Gemini API for NLP tasks. Integrated with Express.js and styled using Tailwind CSS.</p>
+                        <p>Built an AI-powered chatbot using Gemini API for natural language processing tasks. Integrated with Express.js backend and styled with Tailwind CSS.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">Gemini API</span>
                             <span class="tech-tag">Express.js</span>
@@ -311,7 +288,7 @@
                         <h3>Online Examination System</h3>
                     </div>
                     <div class="project-body">
-                        <p>Designed a platform for online exams with AI-based code plagiarism detection. Used Python, React, and MongoDB to ensure secure and fair assessments.</p>
+                        <p>Designed a secure platform for online examinations with AI-based code plagiarism detection. Used Python backend, React frontend, and MongoDB database.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">React</span>
@@ -324,16 +301,25 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="section">
+    <!-- Education & Experience Timeline -->
+    <section id="education" class="section">
         <div class="container">
-            <h2 class="section-title">Experience & Training</h2>
+            <h2 class="section-title">Education & Experience</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <h3>Python Full Stack</h3>
-                        <h4>Pentagon Space Bangalore</h4>
+                        <h3>B.E. Computer Science</h3>
+                        <h4>AGMR College of Engineering & Technology</h4>
+                        <span class="timeline-date">2022 – 2025</span>
+                        <div class="grade">CGPA: 8.8/10</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Python Full Stack Internship</h3>
+                        <h4>Pentagon Space, Bangalore</h4>
                         <span class="timeline-date">Mar 2025 – Ongoing</span>
                         <span class="experience-type">Internship</span>
                     </div>
@@ -341,8 +327,18 @@
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <h3>Full Stack Web Development (MERN)</h3>
-                        <h4>Apponix Academy Hubli</h4>
+                        <h3>Diploma in Computer Science</h3>
+                        <h4>KLE CIM Polytechnic</h4>
+                        <span class="timeline-date">2019 – 2022</span>
+                        <div class="grade">76.6%</div>
+                        <div class="note">DCET Rank 5996</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Full Stack MERN Course</h3>
+                        <h4>Apponix Academy, Hubli</h4>
                         <span class="timeline-date">Nov 2023 – Dec 2023</span>
                         <span class="experience-type">Course</span>
                     </div>
@@ -351,76 +347,19 @@
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <h3>In-Plant Training in Python</h3>
-                        <h4>LCC Hubli</h4>
-                        <span class="timeline-date">May 2022 – July 2022</span>
+                        <h4>LCC, Hubli</h4>
+                        <span class="timeline-date">May 2022 – Jul 2022</span>
                         <span class="experience-type">Training</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="section">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Bachelor of Engineering (B.E.) in Computer Science</h3>
-                        <h4>AGMR College of Engineering & Technology, Varur</h4>
-                        <span class="timeline-date">2022 – 2025</span>
-                        <div class="grade">CGPA: 8.8/10</div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Diploma in Computer Science</h3>
-                        <h4>K.L.E Societies Smt C I M Polytechnic Hubli</h4>
-                        <span class="timeline-date">2019 – 2022</span>
-                        <div class="grade">76.6%</div>
-                        <div class="note">DCET Rank – 5996 (2022)</div>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <h3>SSLC</h3>
-                        <h4>New English School & Rotary Kannada Medium High School</h4>
+                        <h4>NES & Rotary Kannada Medium HS</h4>
                         <span class="timeline-date">2009 – 2019</span>
                         <div class="grade">79.2%</div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Achievements Section -->
-    <section id="achievements" class="section">
-        <div class="container">
-            <h2 class="section-title">Achievements</h2>
-            <div class="achievements-grid">
-                <div class="achievement-card">
-                    <div class="achievement-icon">🏆</div>
-                    <h3>Hackathon Participation</h3>
-                    <p>Participated in various hackathons including 24-hour Hackathon at SKV College Lakshmeshwar and 3-day Hackathon at Sristi National Level Project Exhibition Bangalore</p>
-                </div>
-                <div class="achievement-card">
-                    <div class="achievement-icon">🎯</div>
-                    <h3>National Level Competitions</h3>
-                    <p>Participated in 24 hours National level hackathon in Shridevi college tumkur and K.L.E IT Hubli</p>
-                </div>
-                <div class="achievement-card">
-                    <div class="achievement-icon">🎓</div>
-                    <h3>Microsoft Certification</h3>
-                    <p>Completed and certified the Career Essentials in Generative AI by Microsoft and LinkedIn</p>
-                </div>
-                <div class="achievement-card">
-                    <div class="achievement-icon">⭐</div>
-                    <h3>Academic Excellence</h3>
-                    <p>Awarded 'Best Boy' in NES Kannada primary school hubli</p>
                 </div>
             </div>
         </div>
@@ -434,6 +373,7 @@
                 <div class="contact-info">
                     <h3>Let's Connect</h3>
                     <p>I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.</p>
+                    
                     <div class="contact-details">
                         <div class="contact-detail">
                             <span class="contact-icon">📧</span>
@@ -446,7 +386,14 @@
                             <span class="contact-icon">📱</span>
                             <div>
                                 <strong>Phone</strong>
-                                <p>9844538521</p>
+                                <p>+91 98445 38521</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="contact-icon">🌐</span>
+                            <div>
+                                <strong>Website</strong>
+                                <p>https://chetankamble.online/</p>
                             </div>
                         </div>
                         <div class="contact-detail">
@@ -457,14 +404,26 @@
                             </div>
                         </div>
                     </div>
-                    <div class="social-links-section">
-                        <a href="https://github.com/chetankambleofficial" target="_blank" class="social-btn">GitHub</a>
-                        <a href="https://www.linkedin.com/in/chetankambleofficial/" target="_blank" class="social-btn">LinkedIn</a>
-                        <a href="https://chetankamble.online/" target="_blank" class="social-btn">Portfolio</a>
+
+                    <div class="achievements-section">
+                        <h4>Languages</h4>
+                        <div class="language-list">
+                            <span class="language-item">English</span>
+                            <span class="language-item">Kannada</span>
+                            <span class="language-item">Hindi</span>
+                        </div>
+                        
+                        <h4>Achievements</h4>
+                        <ul class="achievements-list">
+                            <li>Hackathon participation – SKV College, Sristi, Shridevi, KLE IT</li>
+                            <li>Career Essentials in Generative AI – Microsoft & LinkedIn</li>
+                            <li>Awarded 'Best Boy' – NES Kannada Primary School</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form id="contact-form">
+                
+                <div class="contact-form-wrapper">
+                    <form id="contact-form" class="contact-form">
                         <div class="form-group">
                             <label for="name" class="form-label">Name *</label>
                             <input type="text" id="name" name="name" class="form-control" required>
@@ -499,7 +458,9 @@
                 <div class="footer-links">
                     <a href="#home">Home</a>
                     <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
                     <a href="#projects">Projects</a>
+                    <a href="#education">Education</a>
                     <a href="#contact">Contact</a>
                 </div>
             </div>

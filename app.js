@@ -1,4 +1,5 @@
-// Portfolio Website JavaScript
+// README: JavaScript functionality for Chetan Prakash Kamble's portfolio website
+// Features: Theme toggle, typing animation, mobile menu, scroll effects, form handling
 
 // DOM Elements
 const navbar = document.getElementById('navbar');
@@ -10,13 +11,13 @@ const typingText = document.getElementById('typing-text');
 const contactForm = document.getElementById('contact-form');
 const navLinks = document.querySelectorAll('.nav-link');
 
-// Data
+// Data for typing animation
 const typingRoles = [
     "Python Developer",
     "Full-Stack Developer", 
     "AI Enthusiast",
-    "Open-Source Contributor",
-    "Problem Solver"
+    "Problem Solver",
+    "Open Source Contributor"
 ];
 
 // Initialize application
@@ -30,11 +31,13 @@ document.addEventListener('DOMContentLoaded', function() {
     initNavbarScroll();
     initContactForm();
     initActiveNavigation();
+    initAccessibility();
 });
 
 // Theme Management
 function initTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    // Default to dark theme as specified in requirements
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     setTheme(savedTheme);
     
     themeToggle.addEventListener('click', toggleTheme);
@@ -42,6 +45,7 @@ function initTheme() {
 
 function setTheme(theme) {
     document.documentElement.setAttribute('data-color-scheme', theme);
+    document.body.setAttribute('data-color-scheme', theme);
     localStorage.setItem('theme', theme);
     updateThemeIcon(theme);
 }
@@ -95,6 +99,18 @@ function initMobileMenu() {
     mobileMenuToggle.addEventListener('click', function() {
         navMenu.classList.toggle('active');
         mobileMenuToggle.classList.toggle('active');
+        
+        // Animate hamburger bars
+        const spans = this.querySelectorAll('span');
+        if (this.classList.contains('active')) {
+            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+        } else {
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        }
     });
     
     // Close menu when clicking on a nav link
@@ -102,6 +118,12 @@ function initMobileMenu() {
         link.addEventListener('click', function() {
             navMenu.classList.remove('active');
             mobileMenuToggle.classList.remove('active');
+            
+            // Reset hamburger animation
+            const spans = mobileMenuToggle.querySelectorAll('span');
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
         });
     });
     
@@ -110,24 +132,52 @@ function initMobileMenu() {
         if (!navbar.contains(e.target)) {
             navMenu.classList.remove('active');
             mobileMenuToggle.classList.remove('active');
+            
+            // Reset hamburger animation
+            const spans = mobileMenuToggle.querySelectorAll('span');
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
         }
     });
 }
 
-// Smooth Scrolling
+// Smooth Scrolling with navbar offset - FIXED
 function initSmoothScrolling() {
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
             
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+            if (targetId && targetId.startsWith('#')) {
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+                    
+                    // Use requestAnimationFrame for smooth animation
+                    const startPosition = window.pageYOffset;
+                    const distance = offsetTop - startPosition;
+                    const duration = 800;
+                    let startTime = null;
+                    
+                    function animateScroll(currentTime) {
+                        if (startTime === null) startTime = currentTime;
+                        const timeElapsed = currentTime - startTime;
+                        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                        window.scrollTo(0, run);
+                        if (timeElapsed < duration) requestAnimationFrame(animateScroll);
+                    }
+                    
+                    function easeInOutQuad(t, b, c, d) {
+                        t /= d / 2;
+                        if (t < 1) return c / 2 * t * t + b;
+                        t--;
+                        return -c / 2 * (t * (t - 2) - 1) + b;
+                    }
+                    
+                    requestAnimationFrame(animateScroll);
+                }
             }
         });
     });
@@ -147,18 +197,11 @@ function initNavbarScroll() {
             navbar.classList.remove('scrolled');
         }
         
-        // Hide/show navbar on scroll (optional)
-        if (scrollTop > lastScrollTop && scrollTop > 200) {
-            navbar.style.transform = 'translateY(-100%)';
-        } else {
-            navbar.style.transform = 'translateY(0)';
-        }
-        
         lastScrollTop = scrollTop;
     });
 }
 
-// Active Navigation
+// Active Navigation based on scroll position
 function initActiveNavigation() {
     const sections = document.querySelectorAll('section[id]');
     
@@ -206,7 +249,6 @@ function initScrollAnimations() {
         '.skill-category',
         '.project-card',
         '.timeline-item',
-        '.achievement-card',
         '.contact-content'
     ];
     
@@ -218,7 +260,7 @@ function initScrollAnimations() {
     });
 }
 
-// Skill Bars Animation
+// Skill Bars Animation with IntersectionObserver
 function initSkillBars() {
     const skillBars = document.querySelectorAll('.skill-progress');
     
@@ -243,26 +285,32 @@ function initSkillBars() {
     });
 }
 
-// Contact Form
+// Contact Form with validation - FIXED
 function initContactForm() {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        if (validateForm()) {
-            submitForm();
-        }
-    });
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validateForm()) {
+                submitForm();
+            }
+        });
+    }
 }
 
 function validateForm() {
-    const formData = new FormData(contactForm);
-    const name = formData.get('name').trim();
-    const email = formData.get('email').trim();
-    const subject = formData.get('subject').trim();
-    const message = formData.get('message').trim();
-    
-    // Clear previous errors
+    // Clear previous errors first
     clearFormErrors();
+    
+    const nameField = document.getElementById('name');
+    const emailField = document.getElementById('email');
+    const subjectField = document.getElementById('subject');
+    const messageField = document.getElementById('message');
+    
+    const name = nameField.value.trim();
+    const email = emailField.value.trim();
+    const subject = subjectField.value.trim();
+    const message = messageField.value.trim();
     
     let isValid = true;
     
@@ -296,15 +344,17 @@ function validateForm() {
 
 function showFieldError(fieldName, message) {
     const field = document.getElementById(fieldName);
-    const errorElement = document.createElement('div');
-    errorElement.className = 'field-error';
-    errorElement.textContent = message;
-    errorElement.style.color = 'var(--color-error)';
-    errorElement.style.fontSize = 'var(--font-size-sm)';
-    errorElement.style.marginTop = 'var(--space-4)';
-    
-    field.classList.add('form-error');
-    field.parentNode.appendChild(errorElement);
+    if (field) {
+        const errorElement = document.createElement('div');
+        errorElement.className = 'field-error';
+        errorElement.textContent = message;
+        errorElement.style.color = 'var(--color-error)';
+        errorElement.style.fontSize = 'var(--font-size-sm)';
+        errorElement.style.marginTop = 'var(--space-4)';
+        
+        field.classList.add('form-error');
+        field.parentNode.appendChild(errorElement);
+    }
 }
 
 function clearFormErrors() {
@@ -323,41 +373,22 @@ function submitForm() {
     submitBtn.disabled = true;
     submitBtn.classList.add('loading');
     
-    // Simulate form submission (replace with actual form handling)
+    // Simulate form submission - FIXED to show alert and reset form
     setTimeout(() => {
-        showFormSuccess();
+        // Show thank you alert as required
+        alert('Thank you! Your message has been sent successfully.');
+        
+        // Reset form as required
         contactForm.reset();
+        
+        // Clear any remaining validation errors
+        clearFormErrors();
         
         // Reset button
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
         submitBtn.classList.remove('loading');
-    }, 2000);
-}
-
-function showFormSuccess() {
-    const successMessage = document.createElement('div');
-    successMessage.className = 'form-success-message';
-    successMessage.innerHTML = `
-        <div style="
-            background: rgba(var(--color-success-rgb), 0.1);
-            border: 1px solid var(--color-success);
-            color: var(--color-success);
-            padding: var(--space-16);
-            border-radius: var(--radius-base);
-            margin-top: var(--space-16);
-            text-align: center;
-        ">
-            ✅ Thank you! Your message has been sent successfully.
-        </div>
-    `;
-    
-    contactForm.appendChild(successMessage);
-    
-    // Remove success message after 5 seconds
-    setTimeout(() => {
-        successMessage.remove();
-    }, 5000);
+    }, 1500);
 }
 
 // Utility Functions
@@ -386,130 +417,69 @@ function debounce(func, wait) {
     };
 }
 
-// Performance optimizations
-function preloadImages() {
-    // Preload any images that might be needed
-    // This is a placeholder since we're not using actual images
-}
-
-// Additional interactive features
-function initParallaxEffect() {
-    const heroBackground = document.querySelector('.hero-background');
-    
-    if (heroBackground) {
-        window.addEventListener('scroll', throttle(() => {
-            const scrolled = window.pageYOffset;
-            const parallax = scrolled * 0.5;
-            heroBackground.style.transform = `translateY(${parallax}px)`;
-        }, 16));
-    }
-}
-
-// Add subtle hover effects
-function initHoverEffects() {
-    const cards = document.querySelectorAll('.project-card, .achievement-card, .skill-category');
-    
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-}
-
-// Initialize additional features
-document.addEventListener('DOMContentLoaded', function() {
-    // Add a small delay to prevent flash of unstyled content
-    setTimeout(() => {
-        document.body.classList.add('loaded');
-        initParallaxEffect();
-        initHoverEffects();
-    }, 100);
-});
-
-// Add loading class removal
-window.addEventListener('load', function() {
-    document.body.classList.remove('loading');
-});
-
-// Keyboard navigation support
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        navMenu.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
-    }
-});
-
-// Add smooth scrolling for browsers that don't support CSS scroll-behavior
-if (!CSS.supports('scroll-behavior', 'smooth')) {
-    const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
-    
-    smoothScrollLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                const targetPosition = targetElement.offsetTop - 80;
-                smoothScrollTo(targetPosition, 800);
-            }
-        });
-    });
-}
-
-function smoothScrollTo(targetPosition, duration) {
-    const startPosition = window.pageYOffset;
-    const distance = targetPosition - startPosition;
-    let startTime = null;
-    
-    function animation(currentTime) {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const run = ease(timeElapsed, startPosition, distance, duration);
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) requestAnimationFrame(animation);
-    }
-    
-    function ease(t, b, c, d) {
-        t /= d / 2;
-        if (t < 1) return c / 2 * t * t + b;
-        t--;
-        return -c / 2 * (t * (t - 2) - 1) + b;
-    }
-    
-    requestAnimationFrame(animation);
-}
-
 // Add resize handler for responsive adjustments
 window.addEventListener('resize', debounce(function() {
     // Close mobile menu on resize to larger screen
     if (window.innerWidth > 768) {
         navMenu.classList.remove('active');
         mobileMenuToggle.classList.remove('active');
+        
+        // Reset hamburger animation
+        const spans = mobileMenuToggle.querySelectorAll('span');
+        spans.forEach(span => {
+            span.style.transform = 'none';
+            span.style.opacity = '1';
+        });
     }
 }, 250));
 
-// Add focus management for accessibility
+// Keyboard navigation support
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        navMenu.classList.remove('active');
+        mobileMenuToggle.classList.remove('active');
+        
+        // Reset hamburger animation
+        const spans = mobileMenuToggle.querySelectorAll('span');
+        spans.forEach(span => {
+            span.style.transform = 'none';
+            span.style.opacity = '1';
+        });
+    }
+});
+
+// Add hover effects for project cards
+function initHoverEffects() {
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+}
+
+// Initialize accessibility features
 function initAccessibility() {
     // Add skip link functionality
     const skipLink = document.createElement('a');
-    skipLink.href = '#main-content';
+    skipLink.href = '#home';
     skipLink.textContent = 'Skip to main content';
     skipLink.className = 'sr-only';
-    skipLink.style.position = 'absolute';
-    skipLink.style.top = '-40px';
-    skipLink.style.left = '6px';
-    skipLink.style.zIndex = '1000';
-    skipLink.style.color = 'var(--color-primary)';
-    skipLink.style.padding = 'var(--space-8)';
-    skipLink.style.textDecoration = 'none';
-    skipLink.style.backgroundColor = 'var(--color-surface)';
-    skipLink.style.border = '1px solid var(--color-border)';
-    skipLink.style.borderRadius = 'var(--radius-base)';
+    skipLink.style.cssText = `
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        z-index: 1001;
+        color: var(--color-primary);
+        padding: var(--space-8);
+        text-decoration: none;
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-base);
+    `;
     
     skipLink.addEventListener('focus', function() {
         this.style.top = '6px';
@@ -520,16 +490,23 @@ function initAccessibility() {
     });
     
     document.body.insertBefore(skipLink, document.body.firstChild);
-    
-    // Add main content id
-    const heroSection = document.getElementById('home');
-    if (heroSection) {
-        heroSection.id = 'main-content';
-        heroSection.setAttribute('tabindex', '-1');
+}
+
+// Add loading animation completion
+window.addEventListener('load', function() {
+    document.body.classList.add('loaded');
+    initHoverEffects();
+});
+
+// Initialize theme persistence check
+function checkThemePreference() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        setTheme(savedTheme);
     }
 }
 
-// Initialize accessibility features
-document.addEventListener('DOMContentLoaded', initAccessibility);
+// Call theme check on page load
+checkThemePreference();
 
 console.log('Portfolio website loaded successfully! 🚀');
